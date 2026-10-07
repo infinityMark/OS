@@ -1,0 +1,1 @@
+This document contains 4 words with a length of more than 5 characters.

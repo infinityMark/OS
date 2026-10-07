@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+    echo -e "\nUsage:\n $0 file\n"
+    exit 1
+fi
+
+file=$1
+grep -v "==" $file               > $file.bak && mv $file.bak $file
+awk -F '[ ,]' '{print $3}' $file > $file.bak && mv $file.bak $file
+sed 's/...$//' $file             > $file.bak && mv $file.bak $file
+awk -Wposix '{printf("%d\n","0x" $1)}' $file |uniq > $file.bak && mv $file.bak $file
